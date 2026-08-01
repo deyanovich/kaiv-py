@@ -61,6 +61,10 @@ s = kaiv.import_schema("jsonschema", open("api.schema.json").read(),
 raiv = kaiv.compile(text)        # .kaiv -> .raiv (relational)
 daiv = kaiv.denormalize(raiv)    # .raiv -> .daiv (canonical)
 csaiv = kaiv.compile_schema(s)   # .saiv -> .csaiv (contract)
+text = kaiv.unbuild(daiv)        # .daiv/.raiv -> authored .kaiv
+                                 # (a view: resolved sugar --
+                                 # comments, variables, refs --
+                                 # does not come back)
 ```
 
 Errors raise `kaiv.KaivError`; validation verdicts raise

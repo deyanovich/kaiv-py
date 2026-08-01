@@ -11,7 +11,7 @@ import kaiv
 
 
 def test_version():
-    assert kaiv.version() == "0.10.0"
+    assert kaiv.version() == "0.11.0"
 
 
 def test_build_plain():
@@ -50,6 +50,16 @@ def test_validate_accepts_compiled_schema():
 
 def test_fmt():
     assert kaiv.fmt(".!kaiv 1\na=1\n") == ".!kaiv\n\na=1\n"
+
+
+def test_unbuild_is_builds_inverse_direction():
+    daiv = kaiv.build("title=hi\n\n(/owner)\nname=Ada\n!bool\nactive=true\n()\n")
+    authored = kaiv.unbuild(daiv)
+    assert authored.startswith(".!kaiv\n")
+    assert "(/owner)" in authored
+    assert kaiv.build(authored) == daiv
+    with pytest.raises(kaiv.KaivError):
+        kaiv.unbuild("a=1\n")
 
 
 def test_infer_declares_name():

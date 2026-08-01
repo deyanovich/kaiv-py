@@ -115,6 +115,15 @@ fn fmt(text: &str) -> PyResult<String> {
     ::kaiv::format_data(text).map_err(kerr)
 }
 
+/// Canonical `.daiv`/`.raiv` -> idiomatic authored `.kaiv` — the
+/// inverse direction of build, and a view: sugar the compiler
+/// resolved away (comments, variables, references) does not come
+/// back. `.raiv` preserves more, authored units included.
+#[pyfunction]
+fn unbuild(text: &str) -> PyResult<String> {
+    ::kaiv::unbuild(text).map_err(kerr)
+}
+
 /// Infer an authored `.saiv` schema from a document.
 #[pyfunction]
 #[pyo3(signature = (text, name=""))]
@@ -188,6 +197,7 @@ fn kaiv(py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(compile_schema, m)?)?;
     m.add_function(wrap_pyfunction!(validate, m)?)?;
     m.add_function(wrap_pyfunction!(fmt, m)?)?;
+    m.add_function(wrap_pyfunction!(unbuild, m)?)?;
     m.add_function(wrap_pyfunction!(infer, m)?)?;
     m.add_function(wrap_pyfunction!(import_from, m)?)?;
     m.add_function(wrap_pyfunction!(export_to, m)?)?;
