@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "kaiv"
+description = "Python bindings for the kaiv format: the full pipeline, validation, schema inference, and the format hub"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+license-files = ["LICENSE-MIT", "LICENSE-APACHE"]
+authors = [{ name = "Bojan Đuričković" }]
+requires-python = ">=3.9"
+keywords = ["kaiv", "configuration", "schema", "validation", "serialization"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Rust",
+  "Topic :: File Formats",
+  "Topic :: Software Development :: Libraries",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://kaiv.io/"
+Documentation = "https://kaiv.io/kaiv/spec/latest"
+Repository = "https://gitlab.com/kaiv-format/kaiv-py"
+
+[tool.maturin]
+module-name = "kaiv"
+features = ["pyo3/extension-module"]
