@@ -2,7 +2,7 @@
 name = "kaiv-py"
 # The bindings version IS the PyPI version (maturin reads it);
 # aligned with the kaiv core it wraps, starting at 0.10.0.
-version = "0.11.0"
+version = "0.13.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 repository = "https://gitlab.com/kaiv-format/kaiv-py"
@@ -17,7 +17,7 @@ crate-type = ["cdylib"]
 # The published core — the same crate the CLI and wasm wrap.
 # Default features (ICU collation) plus the format hub; `net`
 # stays off — resolution is offline + preload, like the wasm.
-kaiv = { version = "0.11.0", features = [
+kaiv = { version = "0.13.0", features = [
   "json", "yaml", "toml", "xml", "cbor", "avro", "proto", "asn1",
   "graphql", "xsd",
 ] }
