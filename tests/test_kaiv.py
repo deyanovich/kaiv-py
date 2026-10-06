@@ -5,13 +5,16 @@ run by kaiv-rs; these tests pin the Python surface — signatures,
 return types, exception mapping — not the format semantics.
 """
 
+from importlib.metadata import version as dist_version
+
 import pytest
 
 import kaiv
 
 
 def test_version():
-    assert kaiv.version() == "0.11.0"
+    # The module reports the version the distribution was built at.
+    assert kaiv.version() == dist_version("kaiv")
 
 
 def test_build_plain():
